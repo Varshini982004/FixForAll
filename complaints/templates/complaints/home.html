@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>FixForAll | Report Civic Issues</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background: #f4f7fb;
+        color: #222;
+      }
+
+      /* ================= NAVBAR ================= */
+
+      .navbar {
+        background: #007bff;
+        color: white;
+
+        padding: 18px 7%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 26px;
+        font-weight: bold;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .nav-links a:hover {
+        text-decoration: underline;
+      }
+
+      .login-btn {
+        background: white;
+        color: #007bff !important;
+
+        padding: 9px 18px;
+
+        border-radius: 6px;
+      }
+
+      /* ================= HERO ================= */
+
+      .hero {
+        min-height: 500px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        width: 86%;
+        max-width: 1200px;
+
+        margin: auto;
+
+        gap: 50px;
+      }
+
+      .hero-content {
+        flex: 1;
+      }
+
+      .hero-content h1 {
+        font-size: 48px;
+        line-height: 1.15;
+
+        margin-bottom: 20px;
+
+        color: #222;
+      }
+
+      .hero-content h1 span {
+        color: #007bff;
+      }
+
+      .hero-content p {
+        font-size: 18px;
+
+        color: #666;
+
+        line-height: 1.7;
+
+        margin-bottom: 30px;
+
+        max-width: 600px;
+      }
+
+      /* ================= BUTTONS ================= */
+
+      .buttons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .btn {
+        text-decoration: none;
+
+        padding: 13px 24px;
+
+        border-radius: 7px;
+
+        font-weight: bold;
+
+        display: inline-block;
+      }
+
+      .primary-btn {
+        background: #007bff;
+        color: white;
+      }
+
+      .primary-btn:hover {
+        background: #0056b3;
+      }
+
+      .secondary-btn {
+        border: 2px solid #007bff;
+        color: #007bff;
+        background: white;
+      }
+
+      .secondary-btn:hover {
+        background: #007bff;
+        color: white;
+      }
+
+      /* ================= HERO CARD ================= */
+
+      .hero-card {
+        flex: 0 0 400px;
+
+        background: white;
+
+        padding: 35px;
+
+        border-radius: 18px;
+
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+
+        text-align: center;
+      }
+
+      .hero-icon {
+        font-size: 70px;
+
+        margin-bottom: 15px;
+      }
+
+      .hero-card h2 {
+        margin-bottom: 12px;
+      }
+
+      .hero-card p {
+        color: #666;
+
+        line-height: 1.6;
+      }
+
+      /* ================= FEATURES ================= */
+
+      .features-section {
+        background: white;
+
+        padding: 70px 7%;
+      }
+
+      .section-title {
+        text-align: center;
+
+        margin-bottom: 40px;
+      }
+
+      .section-title h2 {
+        font-size: 32px;
+
+        margin-bottom: 10px;
+      }
+
+      .section-title p {
+        color: #666;
+      }
+
+      .features {
+        max-width: 1100px;
+
+        margin: auto;
+
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 22px;
+      }
+
+      .feature-card {
+        background: #f4f7fb;
+
+        padding: 25px;
+
+        border-radius: 12px;
+
+        text-align: center;
+
+        transition: 0.2s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .feature-icon {
+        font-size: 40px;
+
+        margin-bottom: 15px;
+      }
+
+      .feature-card h3 {
+        margin-bottom: 10px;
+      }
+
+      .feature-card p {
+        color: #666;
+
+        font-size: 14px;
+
+        line-height: 1.5;
+      }
+
+      /* ================= HOW IT WORKS ================= */
+
+      .how-section {
+        padding: 70px 7%;
+      }
+
+      .steps {
+        max-width: 1000px;
+
+        margin: auto;
+
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 20px;
+      }
+
+      .step {
+        text-align: center;
+
+        padding: 20px;
+      }
+
+      .step-number {
+        width: 50px;
+        height: 50px;
+
+        background: #007bff;
+
+        color: white;
+
+        border-radius: 50%;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        margin: 0 auto 15px;
+
+        font-size: 20px;
+
+        font-weight: bold;
+      }
+
+      .step h3 {
+        margin-bottom: 8px;
+      }
+
+      .step p {
+        color: #666;
+
+        font-size: 14px;
+
+        line-height: 1.5;
+      }
+
+      /* ================= CTA ================= */
+
+      .cta {
+        background: #007bff;
+
+        color: white;
+
+        text-align: center;
+
+        padding: 60px 20px;
+      }
+
+      .cta h2 {
+        font-size: 32px;
+
+        margin-bottom: 12px;
+      }
+
+      .cta p {
+        margin-bottom: 25px;
+
+        opacity: 0.9;
+      }
+
+      .cta-btn {
+        display: inline-block;
+
+        background: white;
+
+        color: #007bff;
+
+        text-decoration: none;
+
+        padding: 13px 25px;
+
+        border-radius: 7px;
+
+        font-weight: bold;
+      }
+
+      /* ================= FOOTER ================= */
+
+      footer {
+        background: #222;
+
+        color: #ccc;
+
+        text-align: center;
+
+        padding: 20px;
+
+        font-size: 14px;
+      }
+
+      /* ================= MOBILE ================= */
+
+      @media (max-width: 900px) {
+        .hero {
+          flex-direction: column;
+
+          text-align: center;
+
+          padding: 60px 0;
+        }
+
+        .hero-content p {
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .buttons {
+          justify-content: center;
+        }
+
+        .hero-card {
+          width: 100%;
+
+          max-width: 400px;
+        }
+
+        .features,
+        .steps {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .navbar {
+          flex-direction: column;
+
+          gap: 15px;
+        }
+
+        .nav-links {
+          gap: 12px;
+
+          flex-wrap: wrap;
+
+          justify-content: center;
+        }
+
+        .hero-content h1 {
+          font-size: 36px;
+        }
+
+        .buttons {
+          flex-direction: column;
+        }
+
+        .features,
+        .steps {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+      <div class="logo">FixForAll</div>
+
+      <div class="nav-links">
+        <a href="/"> Home </a>
+
+        <a href="/report/"> Report Issue </a>
+
+        <a href="/my-reports/"> My Reports </a>
+
+        <a href="/login/" class="login-btn"> Login </a>
+      </div>
+    </nav>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>
+          Report Civic Issues.
+          <br />
+          <span>Improve Your Community.</span>
+        </h1>
+
+        <p>
+          FixForAll is a civic issue reporting platform that helps citizens
+          report problems such as potholes, broken streetlights, garbage, water
+          leakage and other public infrastructure issues.
+        </p>
+
+        <div class="buttons">
+          <a href="/report/" class="btn primary-btn"> Report an Issue </a>
+
+          <a href="/my-reports/" class="btn secondary-btn">
+            Track My Reports
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-icon">🏙️</div>
+
+        <h2>Make Your Voice Heard</h2>
+
+        <p>
+          Report civic problems in your area and help authorities identify,
+          track and resolve them efficiently.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+
+    <section class="features-section">
+      <div class="section-title">
+        <h2>Report Different Civic Issues</h2>
+
+        <p>Help improve the quality of your local community.</p>
+      </div>
+
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🛣️</div>
+
+          <h3>Road Problems</h3>
+
+          <p>Report potholes, damaged roads and other road-related problems.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💡</div>
+
+          <h3>Streetlights</h3>
+
+          <p>Report broken or non-working streetlights in your area.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🗑️</div>
+
+          <h3>Garbage</h3>
+
+          <p>Report garbage accumulation and waste management problems.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💧</div>
+
+          <h3>Water & Drainage</h3>
+
+          <p>Report water leakage, drainage and related civic problems.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HOW IT WORKS ================= -->
+
+    <section class="how-section">
+      <div class="section-title">
+        <h2>How FixForAll Works</h2>
+
+        <p>A simple process from reporting to resolution.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+
+          <h3>Report</h3>
+
+          <p>Submit details about the civic issue.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+
+          <h3>Verify</h3>
+
+          <p>The complaint can be reviewed and verified.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+
+          <h3>Assign</h3>
+
+          <p>The complaint is assigned to the concerned department.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+
+          <h3>Resolve</h3>
+
+          <p>The issue is worked on and marked as resolved.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+
+    <section class="cta">
+      <h2>See an Issue in Your Community?</h2>
+
+      <p>Report it today and help make your community better.</p>
+
+      <a href="/report/" class="cta-btn"> Report an Issue </a>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>© 2026 FixForAll. Civic Issue Reporting Platform.</footer>
+  </body>
+</html>

@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Admin Dashboard | FixForAll</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background: #f4f7fb;
+        color: #222;
+      }
+
+      /* ================= NAVBAR ================= */
+
+      .navbar {
+        background: #007bff;
+        color: white;
+        padding: 18px 6%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 25px;
+        font-weight: bold;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        font-weight: bold;
+      }
+
+      .nav-links a:hover {
+        text-decoration: underline;
+      }
+
+      /* ================= CONTAINER ================= */
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 35px auto;
+      }
+
+      h1 {
+        margin-bottom: 8px;
+      }
+
+      .subtitle {
+        color: #666;
+        margin-bottom: 30px;
+      }
+
+      /* ================= SEARCH & FILTER ================= */
+
+      .filter-box {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .filter-box form {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .filter-box input {
+        flex: 1;
+        padding: 11px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        outline: none;
+      }
+
+      .filter-box input:focus {
+        border-color: #007bff;
+      }
+
+      .filter-box select {
+        padding: 11px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background: white;
+      }
+
+      .filter-btn {
+        padding: 11px 18px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+      }
+
+      .filter-btn:hover {
+        background: #0056b3;
+      }
+
+      .clear-btn {
+        padding: 11px 18px;
+        background: #6c757d;
+        color: white;
+        text-decoration: none;
+        border-radius: 7px;
+      }
+
+      .clear-btn:hover {
+        background: #545b62;
+      }
+
+      /* ================= STAT CARDS ================= */
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 35px;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 22px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .stat-card h3 {
+        color: #666;
+        font-size: 15px;
+        margin-bottom: 10px;
+      }
+
+      .stat-number {
+        font-size: 30px;
+        font-weight: bold;
+        color: #007bff;
+      }
+
+      /* ================= TABLE ================= */
+
+      .table-container {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        overflow-x: auto;
+      }
+
+      .table-title {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 1200px;
+      }
+
+      th {
+        background: #007bff;
+        color: white;
+        padding: 13px;
+        text-align: left;
+      }
+
+      td {
+        padding: 13px;
+        border-bottom: 1px solid #eee;
+        vertical-align: middle;
+      }
+
+      tr:hover {
+        background: #f8f9fa;
+      }
+
+      /* ================= STATUS ================= */
+
+      .status {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .submitted {
+        background: #fff3cd;
+        color: #856404;
+      }
+
+      .verified {
+        background: #e2e3ff;
+        color: #3730a3;
+      }
+
+      .assigned {
+        background: #e0cffc;
+        color: #59359a;
+      }
+
+      .in-progress {
+        background: #cfe2ff;
+        color: #084298;
+      }
+
+      .resolved {
+        background: #d1e7dd;
+        color: #0f5132;
+      }
+
+      .rejected {
+        background: #f8d7da;
+        color: #842029;
+      }
+
+      /* ================= STATUS FORM ================= */
+
+      .status-form {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .status-form select {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background: white;
+      }
+
+      .update-btn {
+        padding: 8px 12px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .update-btn:hover {
+        background: #0056b3;
+      }
+
+      /* ================= DEPARTMENT FORM ================= */
+
+      .department-form {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .department-form select {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background: white;
+      }
+
+      .assign-btn {
+        padding: 8px 12px;
+        background: #198754;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .assign-btn:hover {
+        background: #146c43;
+      }
+
+      /* ================= IMAGE ================= */
+
+      .complaint-image {
+        width: 70px;
+        height: 55px;
+        object-fit: cover;
+        border-radius: 6px;
+      }
+
+      .no-image {
+        color: #999;
+        font-size: 12px;
+      }
+
+      /* ================= EMPTY ================= */
+
+      .empty {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+      }
+
+      /* ================= MOBILE ================= */
+
+      @media (max-width: 800px) {
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .navbar {
+          padding: 15px 5%;
+        }
+
+        .nav-links a {
+          margin-left: 8px;
+          font-size: 13px;
+        }
+
+        .container {
+          width: 94%;
+        }
+
+        .filter-box form {
+          flex-direction: column;
+          align-items: stretch;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+      <div class="logo">FixForAll Admin</div>
+
+      <div class="nav-links">
+        <a href="/report/"> Report </a>
+
+        <a href="/my-reports/"> My Reports </a>
+
+        <a href="/admin/"> Django Admin </a>
+      </div>
+    </nav>
+
+    <!-- ================= MAIN CONTAINER ================= -->
+
+    <div class="container">
+      <h1>Admin Dashboard</h1>
+
+      <p class="subtitle">
+        Manage and track all civic complaints submitted by users.
+      </p>
+
+      <!-- ================= SEARCH & FILTER ================= -->
+
+      <div class="filter-box">
+        <form method="GET">
+          <input
+            type="text"
+            name="search"
+            placeholder="Search complaint, location or issue type..."
+            value="{{ request.GET.search }}"
+          />
+
+          <select name="status">
+            <option value="">All Status</option>
+
+            {% for value, label in status_choices %}
+
+            <option
+              value="{{ value }}"
+              {%
+              if
+              request.GET.status=""
+              ="value"
+              %}
+              selected
+              {%
+              endif
+              %}
+            >
+              {{ label }}
+            </option>
+
+            {% endfor %}
+          </select>
+
+          <button type="submit" class="filter-btn">Search / Filter</button>
+
+          <a href="{% url 'admin_dashboard' %}" class="clear-btn"> Clear </a>
+        </form>
+      </div>
+
+      <!-- ================= STATISTICS ================= -->
+
+      <div class="stats">
+        <div class="stat-card">
+          <h3>Total Complaints</h3>
+
+          <div class="stat-number">{{ total_count }}</div>
+        </div>
+
+        <div class="stat-card">
+          <h3>Submitted</h3>
+
+          <div class="stat-number">{{ submitted_count }}</div>
+        </div>
+
+        <div class="stat-card">
+          <h3>Verified</h3>
+
+          <div class="stat-number">{{ verified_count }}</div>
+        </div>
+
+        <div class="stat-card">
+          <h3>Assigned</h3>
+
+          <div class="stat-number">{{ assigned_count }}</div>
+        </div>
+
+        <div class="stat-card">
+          <h3>In Progress</h3>
+
+          <div class="stat-number">{{ in_progress_count }}</div>
+        </div>
+
+        <div class="stat-card">
+          <h3>Resolved</h3>
+
+          <div class="stat-number">{{ resolved_count }}</div>
+        </div>
+
+        <div class="stat-card">
+          <h3>Rejected</h3>
+
+          <div class="stat-number">{{ rejected_count }}</div>
+        </div>
+      </div>
+
+      <!-- ================= COMPLAINT TABLE ================= -->
+
+      <div class="table-container">
+        <div class="table-title">All Complaints</div>
+
+        {% if complaints %}
+
+        <table>
+          <thead>
+            <tr>
+              <th>User</th>
+
+              <th>Complaint</th>
+
+              <th>Issue Type</th>
+
+              <th>Location</th>
+
+              <th>Image</th>
+
+              <th>Status</th>
+
+              <th>Department</th>
+
+              <th>Update Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for complaint in complaints %}
+
+            <tr>
+              <!-- USER -->
+
+              <td>{{ complaint.user.username }}</td>
+
+              <!-- COMPLAINT -->
+
+              <td>
+                <strong> {{ complaint.title }} </strong>
+
+                <br />
+
+                <small> {{ complaint.created_at|date:"d M Y, h:i A" }} </small>
+              </td>
+
+              <!-- ISSUE TYPE -->
+
+              <td>{{ complaint.get_issue_type_display }}</td>
+
+              <!-- LOCATION -->
+
+              <td>{{ complaint.location }}</td>
+
+              <!-- IMAGE -->
+
+              <td>
+                {% if complaint.image %}
+
+                <img
+                  src="{{ complaint.image.url }}"
+                  alt="Complaint Image"
+                  class="complaint-image"
+                />
+
+                {% else %}
+
+                <span class="no-image"> No image </span>
+
+                {% endif %}
+              </td>
+
+              <!-- CURRENT STATUS -->
+
+              <td>
+                <span class="status {{ complaint.status|slugify }}">
+                  {{ complaint.get_status_display }}
+                </span>
+              </td>
+
+              <!-- ASSIGN DEPARTMENT -->
+
+              <td>
+                <form
+                  method="POST"
+                  action="{% url 'assign_department' complaint.id %}"
+                  class="department-form"
+                >
+                  {% csrf_token %}
+
+                  <select name="department">
+                    <option value="">Select Department</option>
+
+                    <option
+                      value="electricity"
+                      {%
+                      if
+                      complaint.department=""
+                      ="electricity"
+                      %}
+                      selected
+                      {%
+                      endif
+                      %}
+                    >
+                      Electricity Department
+                    </option>
+
+                    <option
+                      value="roads"
+                      {%
+                      if
+                      complaint.department=""
+                      ="roads"
+                      %}
+                      selected
+                      {%
+                      endif
+                      %}
+                    >
+                      Roads & Infrastructure Department
+                    </option>
+
+                    <option
+                      value="sanitation"
+                      {%
+                      if
+                      complaint.department=""
+                      ="sanitation"
+                      %}
+                      selected
+                      {%
+                      endif
+                      %}
+                    >
+                      Sanitation Department
+                    </option>
+
+                    <option
+                      value="water"
+                      {%
+                      if
+                      complaint.department=""
+                      ="water"
+                      %}
+                      selected
+                      {%
+                      endif
+                      %}
+                    >
+                      Water Department
+                    </option>
+
+                    <option
+                      value="drainage"
+                      {%
+                      if
+                      complaint.department=""
+                      ="drainage"
+                      %}
+                      selected
+                      {%
+                      endif
+                      %}
+                    >
+                      Drainage Department
+                    </option>
+
+                    <option
+                      value="municipal"
+                      {%
+                      if
+                      complaint.department=""
+                      ="municipal"
+                      %}
+                      selected
+                      {%
+                      endif
+                      %}
+                    >
+                      Municipal Department
+                    </option>
+
+                    <option
+                      value="other"
+                      {%
+                      if
+                      complaint.department=""
+                      ="other"
+                      %}
+                      selected
+                      {%
+                      endif
+                      %}
+                    >
+                      Other Department
+                    </option>
+                  </select>
+
+                  <button type="submit" class="assign-btn">Assign</button>
+                </form>
+              </td>
+
+              <!-- UPDATE STATUS -->
+
+              <td>
+                <form
+                  method="POST"
+                  action="{% url 'update_complaint_status' complaint.id %}"
+                  class="status-form"
+                >
+                  {% csrf_token %}
+
+                  <select name="status">
+                    {% for value, label in status_choices %}
+
+                    <option
+                      value="{{ value }}"
+                      {%
+                      if
+                      complaint.status=""
+                      ="value"
+                      %}
+                      selected
+                      {%
+                      endif
+                      %}
+                    >
+                      {{ label }}
+                    </option>
+
+                    {% endfor %}
+                  </select>
+
+                  <button type="submit" class="update-btn">Update</button>
+                </form>
+              </td>
+            </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+
+        {% else %}
+
+        <!-- NO COMPLAINTS -->
+
+        <div class="empty">
+          <h2>No Complaints Yet</h2>
+
+          <p>No civic complaints have been submitted.</p>
+        </div>
+
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

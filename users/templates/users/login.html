@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login | FixForAll</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f7fb;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .login-container {
+        width: 90%;
+        max-width: 430px;
+        background: white;
+        padding: 40px 35px;
+        border-radius: 15px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        color: #007bff;
+        margin-bottom: 8px;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 30px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 7px;
+        color: #333;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        font-size: 15px;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #007bff;
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 13px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 7px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .login-btn:hover {
+        background: #0056b3;
+      }
+
+      .register-text {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+      }
+
+      .register-text a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .error {
+        background: #ffe5e5;
+        color: #c00;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login-container">
+      <div class="logo">FixForAll</div>
+
+      <p class="subtitle">Login to report and track civic issues.</p>
+
+      {% if error %}
+      <div class="error">{{ error }}</div>
+      {% endif %}
+
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label>Username</label>
+
+          <input
+            type="text"
+            name="username"
+            placeholder="Enter username"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            required
+          />
+        </div>
+
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+
+      <p class="register-text">
+        Don't have an account?
+        <a href="/register/">Create Account</a>
+      </p>
+    </div>
+  </body>
+</html>
